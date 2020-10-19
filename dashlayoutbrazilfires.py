@@ -141,9 +141,10 @@ def update_figures(selected_year,selected_state):
 
     else:
         dff=df.copy()
-        dfmap=dff[dff["Year"]==selected_year]
         dfyear=dff[dff["State"]==selected_state]
         dfmonth=dff[(dff["Year"]==selected_year)&(dff["State"]==selected_state)]
+        dff_map=df_map.copy()
+        dfmap=dff_map[dff_map["Year"]==selected_year]
 
         figure_map=px.choropleth_mapbox(dfmap, geojson=geo,featureidkey="properties.sigla",locations="State_Code",color="Number",zoom=2.5,center={"lat":-13.017113,"lon":-51.074481},mapbox_style="carto-positron",color_continuous_scale="sunset",labels={"Number":"Number of Fires"},hover_name="State",hover_data={"State_Code":False,"Year":True,"Number":True},template="plotly_white")
         figure_map.update_layout(margin={"t":0,"r":0,"b":0,"l":0})
